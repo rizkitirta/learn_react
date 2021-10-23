@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar({ children }) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-        <NavLink className="navbar-brand " to="/">
-                  My App
-        </NavLink>
+          <NavLink className="navbar-brand " to="/">
+            My App
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,16 +33,22 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-              <NavLink className="nav-link " to="/contact">
+                <NavLink className="nav-link " to="/contact">
                   Contact
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link " to="/users">
+                  Users
                 </NavLink>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <div className="p-5">{children}</div>
     </div>
   );
-};
+}
 
 export default Navbar;
