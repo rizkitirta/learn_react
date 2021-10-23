@@ -26,7 +26,7 @@ function Users() {
       <div className="row">
         {users.map((user, index) => {
           return (
-            <div className="col-md-3 m-3">
+            <div className="col-md-3 m-3" key={user.id}>
               <div className="card">
                 <div className="card-header">{user.name}</div>
                 <div className="card-body">
