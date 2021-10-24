@@ -1,9 +1,13 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import Router from "./router";
+import { theme } from "./store";
 
 const App = () => {
+  const [currentTheme, setCurrentTheme] = useRecoilState(theme);
+  const defaultTheme = currentTheme == "dark" ? "bg-dark" : "bg-primary";
   return (
-    <div>
+    <div className={`${defaultTheme} vh-100`}>
       <Router />
     </div>
   );

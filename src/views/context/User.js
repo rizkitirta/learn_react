@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
     try {
       let res = await axios.get("https://jsonplaceholder.typicode.com/users/2");
       setUser(res.data);
-      
+
       setLoading(false);
     } catch (e) {
       console.log(e.message);
