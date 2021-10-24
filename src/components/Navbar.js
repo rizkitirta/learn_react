@@ -1,14 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { authUser } from "../store";
+import { authenticated, authUser } from "../store";
 
 function Navbar({ children }) {
-  const {user} = useRecoilValue(authUser)
+  const { user } = useRecoilValue(authUser);
+  const auth = useRecoilValue(authenticated);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
+        <div className="container">
           <NavLink className="navbar-brand " to="/">
             My App
           </NavLink>
@@ -23,7 +25,10 @@ function Navbar({ children }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div
+            className="collapse navbar-collapse justify-content-spacebetween "
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink exact className="nav-link " to="/">
@@ -41,16 +46,35 @@ function Navbar({ children }) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link " to="/users">
-                  Users
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link " to="/">
-                  {user.name}
-                </NavLink>
+                {auth.check ? (
+                  <NavLink className="nav-link " to="/users">
+                    Users
+                  </NavLink>
+                ) : (
+                  ""
+                )}
               </li>
             </ul>
+            {auth.check ? (
+              <ul className="navbar-nav">
+                <li className="nav-item ">
+                  <div className="">{auth.user.name}</div>
+                </li>
+              </ul>
+            ) : (
+              <ul className="navbar-nav ">
+                <li className="nav-item">
+                  <NavLink className="nav-link " to="/login">
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link " to="/register">
+                    Register
+                  </NavLink>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>

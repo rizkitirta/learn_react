@@ -5,7 +5,7 @@ import { theme } from "./store";
 
 const App = () => {
   const [currentTheme, setCurrentTheme] = useRecoilState(theme);
-  const defaultTheme = currentTheme == "dark" ? "bg-dark" : "bg-primary";
+  const defaultTheme = currentTheme == "dark" ? "bg-dark text-warning" : "bg-light text-dark";
   return (
     <div className={`${defaultTheme} vh-100`}>
       <Router />
